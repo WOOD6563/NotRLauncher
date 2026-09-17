@@ -16,6 +16,8 @@ import net.kdt.pojavlaunch.extra.ExtraCore;
 import net.kdt.pojavlaunch.prefs.CustomSeekBarPreference;
 import net.kdt.pojavlaunch.prefs.LauncherPreferences;
 import net.kdt.pojavlaunch.utils.GLInfoUtils;
+import net.kdt.pojavlaunch.utils.GpuUtils;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +37,7 @@ public class LauncherPreferenceExperimentalFragment extends LauncherPreferenceFr
     public void onCreatePreferences(Bundle b, String str) {
         addPreferencesFromResource(R.xml.pref_experimental);
         SwitchPreference pref = requirePreference("freedrenoSysmem", SwitchPreference.class);
-        boolean hasFreedreno = GLInfoUtils.getGlInfo().isAdreno();
+        boolean hasFreedreno = GpuUtils.getGlInfo().isAdreno();
         pref.setVisible(hasFreedreno);
 
         CustomSeekBarPreference pageOpacitySeekbar = requirePreference("pageOpacity", CustomSeekBarPreference.class);
