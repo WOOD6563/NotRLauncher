@@ -34,7 +34,7 @@ public class GpuUtils {
         try {
             version = getMajorGLVersion(versionString);
         }catch (NumberFormatException e) {
-            Log.w("GLInfoUtils","Failed to parse GL version number, falling back to 2", e);
+            Log.w("GpuUtils","Failed to parse GL version number, falling back to 2", e);
         }
         // LTW depends on the ability to create a context with a major version of 3,
         // and even if the string parse returns 3 while EGL can only create 2,
@@ -44,7 +44,7 @@ public class GpuUtils {
     }
 
     private static void initDummyInfo() {
-        Log.e("GLInfoUtils", "An error happened during info query. Will use dummy info. This should be investigated.");
+        Log.e("GpuUtils", "An error happened during info query. Will use dummy info. This should be investigated.");
         info = new GLInfo("<Unknown>", "<Unknown>", 2, false);
     }
 
@@ -52,7 +52,7 @@ public class GpuUtils {
         int[] egl_context_attributes = new int[] { EGL14.EGL_CONTEXT_CLIENT_VERSION, majorVersion, EGL14.EGL_NONE };
         EGLContext context = EGL14.eglCreateContext(eglDisplay, config, EGL14.EGL_NO_CONTEXT, egl_context_attributes, 0);
         if(EGL14.EGL_NO_CONTEXT.equals(context) || context == null) {
-            Log.e("GLInfoUtils", "Failed to create a context with major version "+majorVersion);
+            Log.e("GpuUtils", "Failed to create a context with major version "+majorVersion);
             return null;
         }
         return context;
@@ -65,7 +65,7 @@ public class GpuUtils {
         // But won't let us make it current, which will break the check anyway...
         boolean makeCurrentResult = EGL14.eglMakeCurrent(eglDisplay, surface, surface, context);
         if(!makeCurrentResult) {
-            Log.i("GLInfoUtils", "Failed to make context GL version "+majorVersion +" current");
+            Log.i("GpuUtils", "Failed to make context GL version "+majorVersion +" current");
             EGL14.eglDestroyContext(eglDisplay, context);
             return null;
         }
@@ -97,7 +97,7 @@ public class GpuUtils {
         int[] num_configs = new int[]{0};
         if(!EGL14.eglChooseConfig(eglDisplay, egl_attributes, 0, config, 0, 1, num_configs, 0) || num_configs[0] == 0) {
             EGL14.eglTerminate(eglDisplay);
-            Log.e("GLInfoUtils", "Failed to choose an EGL config");
+            Log.e("GpuUtils", "Failed to choose an EGL config");
             return false;
         }
 
@@ -112,7 +112,7 @@ public class GpuUtils {
 
         EGLSurface surface = EGL14.eglCreatePbufferSurface(eglDisplay, config[0], pbuffer_attributes, 0);
         if(surface == null || surface == EGL14.EGL_NO_SURFACE) {
-            Log.e("GLInfoUtils", "Failed to create pbuffer surface");
+            Log.e("GpuUtils", "Failed to create pbuffer surface");
             EGL14.eglTerminate(eglDisplay);
             return false;
         }
@@ -126,7 +126,7 @@ public class GpuUtils {
 
         // Creation/currenting failed in both cases
         if(context == null) {
-            Log.e("GLInfoUtils", "Failed to create and make context current");
+            Log.e("GpuUtils", "Failed to create and make context current");
             EGL14.eglDestroySurface(eglDisplay, surface);
             EGL14.eglTerminate(eglDisplay);
             return false;
@@ -161,12 +161,12 @@ public class GpuUtils {
      */
     public static GLInfo getGlInfo() {
         if(info != null) return info;
-        Log.i("GLInfoUtils", "Querying graphics device info...");
+        Log.i("GpuUtils", "Querying graphics device info...");
         boolean infoQueryResult = false;
         try {
             infoQueryResult = initAndQueryInfo();
         }catch (Throwable e) {
-            Log.e("GLInfoUtils", "Throwable when trying to initialize GL info", e);
+            Log.e("GpuUtils", "Throwable when trying to initialize GL info", e);
         }
         if(!infoQueryResult) initDummyInfo();
         return info;

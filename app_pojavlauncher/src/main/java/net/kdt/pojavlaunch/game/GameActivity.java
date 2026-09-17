@@ -104,6 +104,8 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
     private View mLoadingScreen;
     private GameRenderer mGameRenderer;
 
+    private static JVersionList.Version currentVersion;
+
     Instance instance;
     Account account;
 
@@ -415,6 +417,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
     private void runCraft(String versionId, File[] classpath) throws Throwable {
         Logger.appendToLog("--------- Starting game with Launcher Debug!");
+        currentVersion = Tools.getVersionInfo(versionId);
         Tools.printLauncherInfo(versionId, instance.getLaunchArgs(), mGameRenderer.getCurrentRenderer(), this);
         JREUtils.redirectAndPrintJRELog();
         GameRunner.launchGame(this, account, instance, versionId, classpath, mGameRenderer);
