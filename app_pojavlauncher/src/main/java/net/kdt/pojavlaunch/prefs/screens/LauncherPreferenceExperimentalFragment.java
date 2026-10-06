@@ -37,9 +37,11 @@ public class LauncherPreferenceExperimentalFragment extends LauncherPreferenceFr
     @Override
     public void onCreatePreferences(Bundle b, String str) {
         addPreferencesFromResource(R.xml.pref_experimental);
-        SwitchPreferenceCompat pref = requirePreference("freedrenoSysmem", SwitchPreferenceCompat.class);
+        SwitchPreferenceCompat sysmem = requirePreference("freedrenoSysmem", SwitchPreferenceCompat.class);
+        SwitchPreferenceCompat ubwc = requirePreference("ubwcWorkaround", SwitchPreferenceCompat.class);
         boolean hasFreedreno = GpuUtils.getGlInfo().isAdreno();
-        pref.setVisible(hasFreedreno);
+        sysmem.setVisible(hasFreedreno);
+        ubwc.setVisible(hasFreedreno);
 
         CustomSeekBarPreference pageOpacitySeekbar = requirePreference("pageOpacity", CustomSeekBarPreference.class);
         pageOpacitySeekbar.setSuffix("%");
