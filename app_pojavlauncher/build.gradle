@@ -55,6 +55,7 @@ android {
     namespace 'git.artdeell.mojo'
 
     compileSdk = 37
+    buildToolsVersion "37.0.0"
 
     lintOptions {
         abortOnError false
