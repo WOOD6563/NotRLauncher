@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app2="http://schemas.android.com/apk/res-auto">
-<<<<<<< HEAD:app_pojavlauncher/src/main/res/xml/pref_experimental.xml
-    <net.kdt.pojavlaunch.prefs.BackButtonPreference/>
+    <git.artdeell.mojo.prefs.BackButtonPreference/>
     <PreferenceCategory android:title="@string/preference_category_experimental_settings"
         app2:iconSpaceReserved="false">
 
@@ -33,7 +32,7 @@
             android:title="@string/preference_alsoft_opensl_title"
             android:summary="@string/preference_alsoft_opensl_summary"
             />
-        <net.kdt.pojavlaunch.prefs.CustomSeekBarPreference
+        <git.artdeell.mojo.prefs.CustomSeekBarPreference
             android:key="pageOpacity"
             android:title="@string/preference_page_opacity_title"
             android:summary="@string/preference_page_opacity_summary"

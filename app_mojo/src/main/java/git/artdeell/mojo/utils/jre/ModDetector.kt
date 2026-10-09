@@ -1,4 +1,4 @@
-package net.kdt.pojavlaunch.utils.jre
+package git.artdeell.mojo.utils.jre
 
 import java.io.File
 

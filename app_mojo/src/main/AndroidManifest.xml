@@ -133,14 +133,14 @@
         </provider>
 
         <activity
-            android:name="net.kdt.pojavlaunch.mobileglues.MainActivity"
+            android:name="git.artdeell.mojo.mobileglues.MainActivity"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|keyboard|navigation"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/MojoLauncher.AppTheme" />
 
         <service
-            android:name="net.kdt.pojavlaunch.mobileglues.MgQueryService"
+            android:name="git.artdeell.mojo.mobileglues.MgQueryService"
             android:exported="false"
             android:process=":mgquery" />
 
