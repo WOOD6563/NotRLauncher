@@ -19,6 +19,8 @@ import git.artdeell.mojo.tasks.AsyncAssetManager;
 import git.artdeell.mojo.utils.FileUtils;
 import git.artdeell.mojo.utils.LocaleUtils;
 
+import me.wood.launch.mobileglues.MGApplication;
+
 import java.io.File;
 import java.io.PrintStream;
 
@@ -30,7 +32,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class MojoApplication extends Application {
+public class MojoApplication extends MGApplication {
 	public static final String CRASH_REPORT_TAG = "MojoCrashReport";
 	public static final ExecutorService sExecutorService = new ThreadPoolExecutor(4, 4, 500, TimeUnit.MILLISECONDS,  new LinkedBlockingQueue<>());
 

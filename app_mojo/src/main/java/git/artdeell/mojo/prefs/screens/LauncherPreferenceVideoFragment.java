@@ -1,6 +1,7 @@
 package git.artdeell.mojo.prefs.screens;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
+
+import me.wood.launch.mobileglues.MainActivity;
 
 import git.artdeell.mojo.R;
 
@@ -54,18 +57,33 @@ public class LauncherPreferenceVideoFragment extends LauncherPreferenceFragment 
 
         // Show ANGLE switch only if AnglePlugin is available
         if(hasAngle == null) {
-            GLESProvider provider = GLESProvider.getGlesProvider(getContext(), true);
-            hasAngle = provider instanceof GLESProvider.ExternalAngleProvider || provider instanceof GLESProvider.SystemAngleProvider;
+            hasAngle = new GLESProvider.ExternalAngleProvider(requireContext()).supported();
         }
         SwitchPreferenceCompat angleSwitch = requirePreference("use_angle", SwitchPreferenceCompat.class);
+        SwitchPreferenceCompat systemAngleSwitch = requirePreference("use_system_angle", SwitchPreferenceCompat.class);
         angleSwitch.setVisible(hasAngle);
         angleSwitch.setChecked(LauncherPreferences.PREF_USE_ANGLE);
+        systemAngleSwitch.setVisible(Build.VERSION.SDK_INT >= 35);
+        systemAngleSwitch.setChecked(LauncherPreferences.PREF_USE_SYSTEM_ANGLE);
+        angleSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
+            if(Boolean.TRUE.equals(newValue)) systemAngleSwitch.setChecked(false);
+            return true;
+        });
+        systemAngleSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
+            if(Boolean.TRUE.equals(newValue)) angleSwitch.setChecked(false);
+            return true;
+        });
 
         ListPreference rendererListPreference = requirePreference("renderer",
                 ListPreference.class);
         RendererCache list = RendererCache.getCompatibleRenderers(getContext());
         rendererListPreference.setEntries(list.rendererDisplayNames);
         rendererListPreference.setEntryValues(list.rendererIds.toArray(new String[0]));
+
+        requirePreference("renderer_settings", Preference.class).setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(getContext(), MainActivity.class));
+            return true;
+        });
 
         computeVisibility();
     }
@@ -88,5 +106,8 @@ public class LauncherPreferenceVideoFragment extends LauncherPreferenceFragment 
     private void computeVisibility(){
         requirePreference("force_vsync", SwitchPreferenceCompat.class)
                 .setVisible(LauncherPreferences.PREF_USE_ALTERNATE_SURFACE);
+        String currentRenderer = LauncherPreferences.DEFAULT_PREF.getString("renderer", "opengles2");
+        boolean isMobileGluesRenderer = ("opengles_mobileglues".equals(currentRenderer) || "opengles_sfpew".equals(currentRenderer));
+        requirePreference("renderer_settings", Preference.class).setVisible(isMobileGluesRenderer);
     }
 }

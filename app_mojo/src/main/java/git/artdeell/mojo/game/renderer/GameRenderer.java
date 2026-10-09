@@ -7,6 +7,9 @@ import static git.artdeell.mojo.game.renderer.def.Renderers.LTW_RENDERER;
 import static git.artdeell.mojo.game.renderer.def.Renderers.MESA_RENDERER;
 import static git.artdeell.mojo.game.renderer.def.Renderers.MESA_RENDERER_EXT;
 import static git.artdeell.mojo.game.renderer.def.Renderers.ZINK_RENDERER;
+import static git.artdeell.mojo.game.renderer.def.Renderers.MOBILEGLUES_RENDERER;
+import static git.artdeell.mojo.game.renderer.def.Renderers.NGGL4ES_RENDERER;
+import static git.artdeell.mojo.game.renderer.def.Renderers.SFPEW_RENDERER;
 
 import android.content.Context;
 import android.system.ErrnoException;
@@ -18,6 +21,10 @@ import git.artdeell.mojo.Tools;
 import git.artdeell.mojo.game.renderer.impl.GLESRenderSpec;
 import git.artdeell.mojo.game.renderer.impl.MesaRenderSpec;
 import git.artdeell.mojo.prefs.LauncherPreferences;
+
+import me.wood.launch.renderer.MgRenderSpec;
+import me.wood.launch.renderer.NGGL4ESRenderSpec;
+import me.wood.launch.renderer.SFPEWRenderSpec;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +77,9 @@ public class GameRenderer {
             case MESA_RENDERER: return new MesaRenderSpec();
             case MESA_RENDERER_EXT: return new MesaRenderSpec.ExtMesaRenderSpec();
             case LEGACYZINK_RENDERER: return new MesaRenderSpec.LegacyZinkRenderSpec();
+            case MOBILEGLUES_RENDERER: return new MgRenderSpec();
+            case SFPEW_RENDERER: return new SFPEWRenderSpec();
+            case NGGL4ES_RENDERER: return new NGGL4ESRenderSpec();
             default:
                 Log.e(TAG, "Unknown renderer " + renderer);
                 return null;

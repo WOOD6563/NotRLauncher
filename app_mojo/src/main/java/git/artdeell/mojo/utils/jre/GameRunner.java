@@ -65,7 +65,7 @@ public class GameRunner {
      * @param gameDir current game directory
      * @return whether Angelica is installed
      */
-    private static boolean hasAngelica(File gameDir) {
+    public static boolean hasAngelica(File gameDir) {
         File modsDir = new File(gameDir, "mods");
         File[] mods = modsDir.listFiles(file -> file.isFile() && file.getName().endsWith(".jar"));
         if(mods == null) return false;
@@ -89,7 +89,7 @@ public class GameRunner {
      */
 
     private static boolean affectedByRenderDistanceIssue(JVersionList.Version version) throws ParseException {
-        if(LauncherPreferences.PREF_USE_ANGLE) return false;
+        if(LauncherPreferences.PREF_USE_ANGLE || LauncherPreferences.PREF_USE_SYSTEM_ANGLE) return false;
         GpuUtils.GLInfo info = GpuUtils.getGlInfo();
         return info.isAdreno() &&
                 info.glesMajorVersion >= 3 &&

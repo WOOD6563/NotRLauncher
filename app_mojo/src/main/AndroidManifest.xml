@@ -129,6 +129,17 @@
             </intent-filter>
         </provider>
 
+          <activity
+            android:name="me.wood.launch.mobileglues.MainActivity"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|keyboard|navigation"
+            android:theme="@style/MojoLauncher.AppTheme" />
+
+        <service
+            android:name="git.artdeell.mojo.mobileglues.MgQueryService"
+            android:exported="false"
+            android:process=":mg_query" />
+
         <service android:name=".services.ProgressService"
             android:foregroundServiceType="dataSync"/>
         <service android:name=".services.GameService" android:process=":game"
@@ -139,7 +150,6 @@
     </application>
     <queries>
         <package android:name="git.mojo.ffmpeg"/>
-        <package android:name="git.mojo.angle"/>
         <package android:name="git.mojo.zink"/>
         <package android:name="git.mojo.mesa"/>
         <package android:name="git.artdeell.mojo"/>

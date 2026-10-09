@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preference_use_system_angle_title">System ANGLE</string>
+</resources>

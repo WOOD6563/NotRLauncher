@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mcl_setting_renderer_mobileglues">MobileGlues - (1.17+ only, fast)</string>
+    <string name="mcl_setting_renderer_nggl4es">Krypton Wrapper - all versions, fast</string>
+    <string name="mcl_setting_renderer_sfpew">SFPEW/MobileGlues (OpenGL ES) - (all versions, fast)</string>
+</resources>
