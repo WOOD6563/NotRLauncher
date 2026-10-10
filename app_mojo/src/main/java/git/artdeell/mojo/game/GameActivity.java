@@ -76,6 +76,8 @@ import git.artdeell.mojo.utils.MCOptionUtils;
 import git.artdeell.mojo.authenticator.accounts.Account;
 import git.artdeell.mojo.utils.jre.GameRunner;
 
+import me.wood.launch.game.FpsProvider;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -411,6 +413,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
     private void runCraft(String versionId, File[] classpath) throws Throwable {
         Logger.appendToLog("--------- Starting game with Launcher Debug!");
+        FpsProvider.setVersion(Tools.getVersionInfo(versionId));
         Tools.printLauncherInfo(versionId, instance.getLaunchArgs(), mGameRenderer.getCurrentRenderer(), this);
         JREUtils.redirectAndPrintJRELog();
         GameRunner.launchGame(this, account, instance, versionId, classpath, mGameRenderer);

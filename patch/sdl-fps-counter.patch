@@ -1,0 +1,109 @@
+AI-assisted
+
+diff --git a/jni_bindings/src/main/java/git/mojo/sdl/SDLActivity.java b/jni_bindings/src/main/java/git/mojo/sdl/SDLActivity.java
+index 589308e..1902f65 100644
+--- a/jni_bindings/src/main/java/git/mojo/sdl/SDLActivity.java
++++ b/jni_bindings/src/main/java/git/mojo/sdl/SDLActivity.java
+@@ -92,6 +92,7 @@ public class SDLActivity {
+     public static native void onNativeSurfaceCreated();
+     public static native void onNativeSurfaceChanged();
+     public static native void onNativeSurfaceDestroyed();
++    public static native int initFps();
+     public static native void onNativeScreenKeyboardShown();
+     public static native void onNativeScreenKeyboardHidden();
+     public static native String nativeGetHint(String name);
+diff --git a/src/core/android/SDL_android.c b/src/core/android/SDL_android.c
+index 5ab1e27..66b06b2 100644
+--- a/src/core/android/SDL_android.c
++++ b/src/core/android/SDL_android.c
+@@ -32,6 +32,9 @@
+ #include "../../video/android/SDL_androidpen.h"
+ #include "../../video/android/SDL_androidvideo.h"
+ #include "../../video/android/SDL_androidwindow.h"
++#ifdef SDL_VIDEO_OPENGL_EGL
++#include "../../video/SDL_egl_c.h"
++#endif
+ #endif
+ #include "../../joystick/android/SDL_sysjoystick_c.h"
+ #include "../../haptic/android/SDL_syshaptic_c.h"
+@@ -233,6 +236,9 @@ JNIEXPORT void JNICALL SDL_JAVA_INTERFACE(onNativeSurfaceChanged)(
+ JNIEXPORT void JNICALL SDL_JAVA_INTERFACE(onNativeSurfaceDestroyed)(
+     JNIEnv *env, jclass jcls);
+ 
++JNIEXPORT int JNICALL SDL_JAVA_INTERFACE(initFps)(
++    JNIEnv *env, jclass jcls);
++
+ JNIEXPORT void JNICALL SDL_JAVA_INTERFACE(onNativeScreenKeyboardShown)(
+     JNIEnv *env, jclass jcls);
+ 
+@@ -391,6 +397,7 @@ static JNINativeMethod SDLActivity_tab[] = {
+     { "onNativeSurfaceCreated", "()V", SDL_JAVA_INTERFACE(onNativeSurfaceCreated) },
+     { "onNativeSurfaceChanged", "()V", SDL_JAVA_INTERFACE(onNativeSurfaceChanged) },
+     { "onNativeSurfaceDestroyed", "()V", SDL_JAVA_INTERFACE(onNativeSurfaceDestroyed) },
++    { "initFps", "()I", SDL_JAVA_INTERFACE(initFps) },
+     { "onNativeScreenKeyboardShown", "()V", SDL_JAVA_INTERFACE(onNativeScreenKeyboardShown) },
+     { "onNativeScreenKeyboardHidden", "()V", SDL_JAVA_INTERFACE(onNativeScreenKeyboardHidden) },
+     { "onNativeKeyDown", "(I)Z", SDL_JAVA_INTERFACE(onNativeKeyDown) },
+@@ -1321,6 +1328,15 @@ retry:
+     SDL_UnlockMutex(Android_ActivityMutex);
+ }
+ 
++JNIEXPORT int JNICALL SDL_JAVA_INTERFACE(initFps)(JNIEnv *env, jclass jcls)
++{
++#ifdef SDL_VIDEO_OPENGL_EGL
++    return SDL_EGL_GetAndResetSwapCountAndroid();
++#else
++    return 0;
++#endif
++}
++
+ JNIEXPORT void JNICALL SDL_JAVA_INTERFACE(onNativeScreenKeyboardShown)(JNIEnv *env, jclass jcls)
+ {
+     SDL_SendScreenKeyboardShown();
+diff --git a/src/video/SDL_egl.c b/src/video/SDL_egl.c
+index a3ade14..04f6c85 100644
+--- a/src/video/SDL_egl.c
++++ b/src/video/SDL_egl.c
+@@ -1266,14 +1266,28 @@ bool SDL_EGL_GetSwapInterval(SDL_VideoDevice *_this, int *interval)
+     return true;
+ }
+ 
++#ifdef SDL_PLATFORM_ANDROID
++static SDL_AtomicInt egl_swap_count_android;
++#endif
++
+ bool SDL_EGL_SwapBuffers(SDL_VideoDevice *_this, EGLSurface egl_surface)
+ {
+     if (!_this->egl_data->eglSwapBuffers(_this->egl_data->egl_display, egl_surface)) {
+         return SDL_EGL_SetError("unable to show color buffer in an OS-native window", "eglSwapBuffers");
+     }
++#ifdef SDL_PLATFORM_ANDROID
++    SDL_AddAtomicInt(&egl_swap_count_android, 1);
++#endif
+     return true;
+ }
+ 
++#ifdef SDL_PLATFORM_ANDROID
++int SDL_EGL_GetAndResetSwapCountAndroid(void)
++{
++    return SDL_SetAtomicInt(&egl_swap_count_android, 0);
++}
++#endif
++
+ bool SDL_EGL_DestroyContext(SDL_VideoDevice *_this, SDL_GLContext context)
+ {
+     EGLContext egl_context = (EGLContext)context;
+diff --git a/src/video/SDL_egl_c.h b/src/video/SDL_egl_c.h
+index fdb3f72..a06bd33 100644
+--- a/src/video/SDL_egl_c.h
++++ b/src/video/SDL_egl_c.h
+@@ -138,6 +138,9 @@ extern bool SDL_EGL_InitializeOffscreen(SDL_VideoDevice *_this, int device);
+ extern SDL_GLContext SDL_EGL_CreateContext(SDL_VideoDevice *_this, EGLSurface egl_surface);
+ extern bool SDL_EGL_MakeCurrent(SDL_VideoDevice *_this, EGLSurface egl_surface, SDL_GLContext context);
+ extern bool SDL_EGL_SwapBuffers(SDL_VideoDevice *_this, EGLSurface egl_surface);
++#ifdef SDL_PLATFORM_ANDROID
++extern int SDL_EGL_GetAndResetSwapCountAndroid(void);
++#endif
+ 
+ // SDL Error-reporting
+ extern bool SDL_EGL_SetErrorEx(const char *message, const char *eglFunctionName, EGLint eglErrorCode);

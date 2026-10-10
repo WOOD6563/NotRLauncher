@@ -1,0 +1,53 @@
+AI-assisted
+
+diff --git a/jni_bindings/src/main/java/git/artdeell/dnbootstrap/glfw/GLFW.java b/jni_bindings/src/main/java/git/artdeell/dnbootstrap/glfw/GLFW.java
+index a7d6997..4fb4539 100644
+--- a/jni_bindings/src/main/java/git/artdeell/dnbootstrap/glfw/GLFW.java
++++ b/jni_bindings/src/main/java/git/artdeell/dnbootstrap/glfw/GLFW.java
+@@ -121,6 +121,7 @@ public class GLFW {
+     public static native void nativeSurfaceCreated(Surface surface);
+     public static native void nativeSurfaceDestroyed();
+     public static native void nativeSurfaceUpdated();
++    public static native int initFps();
+     public static native void nativeNotifyGamepadConnected();
+     public static native void nativeSetWindowAttribs(int attrib, boolean value);
+ }
+diff --git a/src/egl_context.c b/src/egl_context.c
+index 2088e85..07621df 100644
+--- a/src/egl_context.c
++++ b/src/egl_context.c
+@@ -35,8 +35,11 @@
+ #if defined(_GLFW_ANDROID)
+ #include "android_egl_context_hook.h"
+ #include "mojoexec.h"
++#include <jni.h>
+ #endif
+ 
++static int currentFps = 0;
++
+ // Return a description of the specified EGL error
+ //
+ static const char* getEGLErrorString(EGLint error)
+@@ -322,8 +325,22 @@ static void swapBuffersEGL(_GLFWwindow* window)
+ #endif
+ 
+     eglSwapBuffers(_glfw.egl.display, window->context.egl.surface);
++
++#if defined(_GLFW_ANDROID)
++    currentFps++;
++#endif
+ }
+ 
++#if defined(_GLFW_ANDROID)
++JNIEXPORT jint JNICALL
++Java_git_artdeell_dnbootstrap_glfw_GLFW_initFps(JNIEnv *env, jclass clazz)
++{
++    int fps = currentFps;
++    currentFps = 0;
++    return fps;
++}
++#endif
++
+ static void swapIntervalEGL(int interval)
+ {
+ #if defined(_GLFW_WAYLAND)

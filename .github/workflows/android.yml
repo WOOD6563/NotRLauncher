@@ -17,7 +17,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: true
+          submodules: recursive
+
+      - name: Apply upstream patches
+        run: |
+          set -e
+          echo "Applying glfw34-fps-counter.patch"
+          cd glfw
+          git apply --check ../patch/glfw34-fps-counter.patch
+          git apply ../patch/glfw34-fps-counter.patch
+          cd ..
+
+          echo "Applying sdl-fps-counter.patch"
+          cd sdl
+          git apply --check ../patch/sdl-fps-counter.patch
+          git apply ../patch/sdl-fps-counter.patch
+          cd ..
 
       - name: Get LTW
         uses: dawidd6/action-download-artifact@v6
