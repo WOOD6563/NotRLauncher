@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import git.artdeell.mojo.R;
@@ -46,15 +46,17 @@ public class InstanceEditorFragment extends Fragment implements CropperUtils.Cro
     private Instance mInstance;
     private String mSelectedControlLayout;
     private Button mSaveButton, mDeleteButton, mControlSelectButton, mVersionSelectButton;
-    private Spinner mDefaultRuntime, mDefaultRenderer;
+    private Spinner mDefaultRuntime;
     private EditText mDefaultName, mDefaultJvmArgument;
-    private TextView mDefaultVersion, mDefaultControl;
+    private TextView mDefaultVersion, mDefaultControl, mDefaultRenderer;
     private ImageView mInstanceIcon;
     private CheckBox mSharedDataCheckbox;
     private int mRecommendedIconSize;
     private final ActivityResultLauncher<?> mCropperLauncher = CropperUtils.registerCropper(this, this);
 
     private List<String> mRenderNames;
+    private String[] mRendererEntries;
+    private int mRendererIndex;
 
     public InstanceEditorFragment(){
         super(R.layout.fragment_instance_editor);
@@ -80,7 +82,8 @@ public class InstanceEditorFragment extends Fragment implements CropperUtils.Cro
         List<String> renderList = new ArrayList<>(list.rendererDisplayNames.length + 1);
         renderList.addAll(Arrays.asList(list.rendererDisplayNames));
         renderList.add(view.getContext().getString(R.string.global_default));
-        mDefaultRenderer.setAdapter(new ArrayAdapter<>(view.getContext(), R.layout.item_simple_list_1, renderList));
+        mRendererEntries = renderList.toArray(new String[0]);
+        mDefaultRenderer.setOnClickListener(v -> showRendererDialog());
 
         // Set up behaviors
         mSaveButton.setOnClickListener(v -> {
@@ -142,6 +145,22 @@ public class InstanceEditorFragment extends Fragment implements CropperUtils.Cro
         return v -> VersionSelectorDialog.open(v.getContext(), false, (id, snapshot)-> mDefaultVersion.setText(id));
     }
 
+    private void selectRenderer(int index) {
+        mRendererIndex = index;
+        mDefaultRenderer.setText(mRendererEntries[index]);
+    }
+
+    private void showRendererDialog() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.pedit_renderer)
+                .setSingleChoiceItems(mRendererEntries, mRendererIndex, (dialog, which) -> {
+                    selectRenderer(which);
+                    dialog.dismiss();
+                })
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
+    }
+
     private static String nullToEmpty(String in) {
         if(in == null) return "";
         return in;
@@ -166,9 +185,9 @@ public class InstanceEditorFragment extends Fragment implements CropperUtils.Cro
         // Renderer spinner
         int rendererIndex = mRenderNames.indexOf(instance.getLaunchRenderer());
         if(rendererIndex == -1) {
-            rendererIndex = mDefaultRenderer.getAdapter().getCount() - 1;
+            rendererIndex = mRendererEntries.length - 1;
         }
-        mDefaultRenderer.setSelection(rendererIndex);
+        selectRenderer(rendererIndex);
 
         mDefaultVersion.setText(instance.versionId);
         mDefaultJvmArgument.setText(nullToEmpty(instance.jvmArgs));
@@ -208,8 +227,8 @@ public class InstanceEditorFragment extends Fragment implements CropperUtils.Cro
         mInstance.selectedRuntime = (selectedRuntime.name.equals("<Default>") || selectedRuntime.versionString == null)
                 ? null : selectedRuntime.name;
 
-        if(mDefaultRenderer.getSelectedItemPosition() == mRenderNames.size()) mInstance.renderer = null;
-        else mInstance.renderer = mRenderNames.get(mDefaultRenderer.getSelectedItemPosition());
+        if(mRendererIndex == mRenderNames.size()) mInstance.renderer = null;
+        else mInstance.renderer = mRenderNames.get(mRendererIndex);
 
         try {
             if(!newName.isEmpty() && !newName.equals(mInstance.name))
