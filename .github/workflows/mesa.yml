@@ -1,0 +1,30 @@
+name: Mesa
+
+on:
+  push:
+  workflow_dispatch:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get Mesa
+        uses: dawidd6/action-download-artifact@v6
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.MESA_ACTIONS }}
+          repo: MojoLauncher/mesa-unified2
+          workflow: android.yml
+          workflow_conclusion: success
+          branch: mojo/26.2
+          name: mesa-aar
+          path: app_pojavlauncher/libs
+
+      - name: Upload Mesa
+        uses: actions/upload-artifact@v4
+        with:
+          name: mesa-aar
+          path: app_pojavlauncher/libs/*.aar
+          if-no-files-found: warn
