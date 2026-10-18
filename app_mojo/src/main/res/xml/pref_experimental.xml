@@ -2,23 +2,26 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app2="http://schemas.android.com/apk/res-auto">
     <git.artdeell.mojo.prefs.BackButtonPreference />
-    <PreferenceCategory android:title="@string/preference_category_experimental_settings">
+    <PreferenceCategory android:title="@string/preference_category_experimental_settings" app2:iconSpaceReserved="false">
 
         <SwitchPreferenceCompat
             android:key="dump_shaders"
             android:title="@string/preference_shader_dump_title"
             android:summary="@string/preference_shader_dump_description"
+            app2:iconSpaceReserved="false"
             />
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="bigCoreAffinity"
             android:title="@string/preference_force_big_core_title"
-            android:summary="@string/preference_force_big_core_desc" />
+            android:summary="@string/preference_force_big_core_desc"
+            app2:iconSpaceReserved="false" />
         <SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="freedrenoSysmem"
             android:title="@string/preference_sysmem_title"
             android:summary="@string/preference_sysmem_summary"
+            app2:iconSpaceReserved="false"
             />
         <SwitchPreferenceCompat
             android:defaultValue="false"
@@ -32,6 +35,7 @@
             android:key="ubwcWorkaround"
             android:title="@string/preference_ubwc_title"
             android:summary="@string/preference_ubwc_summary"
+            app2:iconSpaceReserved="false"
             />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -4,7 +4,7 @@
 
     <git.artdeell.mojo.prefs.BackButtonPreference />
 
-    <PreferenceCategory android:title="@string/preference_category_miscellaneous">
+    <PreferenceCategory android:title="@string/preference_category_miscellaneous" app2:iconSpaceReserved="false">
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:icon="@drawable/ic_px_hash"
@@ -46,7 +46,8 @@
         <Preference
             android:key="clearMetadataCache"
             android:title="@string/preference_metadata_clear"
-            android:summary="@string/preference_metadata_clear_summary" />
+            android:summary="@string/preference_metadata_clear_summary"
+            app2:iconSpaceReserved="false" />
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:icon="@drawable/ic_px_memory_warning"
@@ -57,7 +58,8 @@
             android:defaultValue="true"
             android:key="disableServerBlocklist"
             android:title="@string/pref_blocklist_disable_title"
-            android:summary="@string/pref_blocklist_disable_description"/>
+            android:summary="@string/pref_blocklist_disable_description"
+            app2:iconSpaceReserved="false"/>
 
 
     </PreferenceCategory>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="preference_use_system_angle_title">System ANGLE</string>
+    <string name="preference_launcher_settings_title">Launcher settings</string>
+    <string name="preference_launcher_settings_description">Launcher appearance and behavior</string>
+    <string name="preference_category_launcher_settings">Launcher settings</string>
 </resources>
