@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app2="http://schemas.android.com/apk/res-auto">
 
     <git.artdeell.mojo.prefs.BackButtonPreference />
 
-    <PreferenceCategory android:title="@string/preference_category_launcher_settings">
+    <PreferenceCategory
+        android:title="@string/preference_category_launcher_settings"
+        app2:iconSpaceReserved="false">
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:icon="@drawable/ic_px_viewport_expand"

@@ -47,6 +47,8 @@ import git.artdeell.mojo.tasks.AsyncVersionList;
 import git.artdeell.mojo.tasks.mojson.MoJsonDownloader;
 import git.artdeell.mojo.utils.NotificationUtils;
 
+import com.google.android.material.color.DynamicColors;
+
 public class LauncherActivity extends BaseActivity {
     public static final String SETTING_FRAGMENT_TAG = "SETTINGS_FRAGMENT";
 
@@ -160,6 +162,7 @@ public class LauncherActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DynamicColors.applyToActivityIfAvailable(this);
         setContentView(R.layout.activity_mojo_ui);
         MoJsonDownloader.prepareSubstitutionMap(getAssets());
 
