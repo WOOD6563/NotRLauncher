@@ -128,7 +128,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
         }
         mGameRenderer = new GameRenderer(instance.getLaunchRenderer());
 
-        if(GpuUtils.getGlInfo().isAdreno() && !PREF_ZINK_PREFER_SYSTEM_DRIVER) {
+        if(!PREF_ZINK_PREFER_SYSTEM_DRIVER) {
             mGameRenderer.overrideVulkanDriver();
         }
 

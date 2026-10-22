@@ -12,7 +12,7 @@
             android:icon="@drawable/ic_px_image_renderer"
             app2:useSimpleSummaryProvider="true"/>
 
-          <Preference
+        <Preference
             android:key="renderer_settings"
             android:title="@string/mcl_setting_title_renderer_settings"
             android:icon="@drawable/ic_mg_renderer"
@@ -62,20 +62,28 @@
             android:key="use_angle"
             android:summary="@string/preference_use_angle_description"
             android:title="@string/preference_use_angle_title"
-        />
+            />
 
-        <SwitchPreferenceCompat
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="use_system_angle"
+            android:dependency="use_angle"
             android:summary="@string/preference_use_angle_description"
             android:title="@string/preference_use_system_angle_title"
-        />
+            />
 
-        <SwitchPreferenceCompat
+        <Preference
+            android:key="manageDrivers"
+            android:persistent="false"
+            android:summary="@string/driver_config_pref_subtitle"
+            android:title="@string/driver_config_pref_title"/>
+
+        <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:icon="@drawable/ic_px_volcano"
             android:key="zinkPreferSystemDriver"
             android:summary="@string/preference_vulkan_driver_system_description"
             android:title="@string/preference_vulkan_driver_system_title"/>
+
     </PreferenceCategory>
 </PreferenceScreen>
