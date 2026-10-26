@@ -414,7 +414,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
     private void runCraft(String versionId, File[] classpath) throws Throwable {
         Logger.appendToLog("--------- Starting game with Launcher Debug!");
         FpsProvider.setVersion(Tools.getVersionInfo(versionId));
-        Tools.printLauncherInfo(versionId, instance.getLaunchArgs(), mGameRenderer.getCurrentRenderer(), this);
+        Tools.printLauncherInfo(versionId, instance.getLaunchArgs(), mGameRenderer.getCurrentRenderer(), instance.selectedRuntime, this);
         JREUtils.redirectAndPrintJRELog();
         GameRunner.launchGame(this, account, instance, versionId, classpath, mGameRenderer);
         //Note that we actually stall in the above function, even if the game crashes. But let's be safe.
