@@ -71,7 +71,6 @@
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="use_system_angle"
-            android:dependency="use_angle"
             android:summary="@string/preference_use_angle_description"
             android:title="@string/preference_use_system_angle_title"
             app2:iconSpaceReserved="false"
