@@ -260,6 +260,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
                      case 2: dialogSendCustomKey(); break;
                      case 3: openQuickSettings(); break;
                      case 4: openCustomControls(); break;
+                     case 5: FpsProvider.initCurrentFps(); break;
                 }
                 drawerLayout.closeDrawers();
             };
@@ -325,6 +326,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
         mDrawerPullButton = findViewById(R.id.drawer_button);
         mHotbarView = findViewById(R.id.hotbar_view);
         mLoadingScreen = findViewById(R.id.main_loading_screen);
+        FpsProvider.currentFpsView = findViewById(R.id.current_fps_view);
     }
 
     @Override

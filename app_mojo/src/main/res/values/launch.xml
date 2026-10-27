@@ -4,4 +4,5 @@
     <string name="preference_launcher_settings_title">Launcher settings</string>
     <string name="preference_launcher_settings_description">Launcher appearance and behavior</string>
     <string name="preference_category_launcher_settings">Launcher settings</string>
+    <string name="mcl_setting_current_fps">Show Current Fps</string>
 </resources>
