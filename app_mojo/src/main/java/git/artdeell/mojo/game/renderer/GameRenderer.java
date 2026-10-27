@@ -22,9 +22,9 @@ import git.artdeell.mojo.game.renderer.impl.GLESRenderSpec;
 import git.artdeell.mojo.game.renderer.impl.MesaRenderSpec;
 import git.artdeell.mojo.prefs.LauncherPreferences;
 
-import me.wood.launch.renderer.MgRenderSpec;
-import me.wood.launch.renderer.NGGL4ESRenderSpec;
-import me.wood.launch.renderer.SFPEWRenderSpec;
+import me.wood.notr.renderer.MgRenderSpec;
+import me.wood.notr.renderer.NGGL4ESRenderSpec;
+import me.wood.notr.renderer.SFPEWRenderSpec;
 
 import java.io.File;
 import java.util.HashMap;

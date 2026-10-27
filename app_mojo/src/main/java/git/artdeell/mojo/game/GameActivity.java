@@ -76,7 +76,7 @@ import git.artdeell.mojo.utils.MCOptionUtils;
 import git.artdeell.mojo.authenticator.accounts.Account;
 import git.artdeell.mojo.utils.jre.GameRunner;
 
-import me.wood.launch.game.FpsProvider;
+import me.wood.notr.game.FpsProvider;
 
 import java.io.File;
 import java.io.IOException;
@@ -248,7 +248,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
 
             setIntent(activityIntent);
 
-            setTitle("MojoLauncher (" + version + ")");
+            setTitle("NotR·Launcher (" + version + ")");
 
             // Menu
             gameActionArrayAdapter = new ArrayAdapter<>(this,

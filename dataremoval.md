@@ -1,5 +1,5 @@
-# Remove MojoLauncher account data
-MojoLauncher uses two types of accounts:
+# Remove NotR·Launcher account data
+NotR·Launcher uses two types of accounts:
 - Local accounts
 - Microsoft accounts
 <br>

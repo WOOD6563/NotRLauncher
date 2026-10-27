@@ -12,7 +12,7 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
 
-import me.wood.launch.mobileglues.MainActivity;
+import me.wood.notr.mobileglues.MainActivity;
 
 import git.artdeell.mojo.BuildConfig;
 import git.artdeell.mojo.R;

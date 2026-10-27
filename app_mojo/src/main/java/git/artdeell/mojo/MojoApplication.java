@@ -19,7 +19,7 @@ import git.artdeell.mojo.tasks.AsyncAssetManager;
 import git.artdeell.mojo.utils.FileUtils;
 import git.artdeell.mojo.utils.LocaleUtils;
 
-import me.wood.launch.mobileglues.MGApplication;
+import me.wood.notr.mobileglues.MGApplication;
 
 import java.io.File;
 import java.io.PrintStream;

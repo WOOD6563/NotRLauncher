@@ -132,7 +132,7 @@
         </provider>
 
           <activity
-            android:name="me.wood.launch.mobileglues.MainActivity"
+            android:name="me.wood.notr.mobileglues.MainActivity"
             android:exported="false"
             android:screenOrientation="sensorLandscape"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|keyboard|navigation"
