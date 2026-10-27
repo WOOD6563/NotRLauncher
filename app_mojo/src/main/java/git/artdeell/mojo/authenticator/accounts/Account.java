@@ -90,7 +90,15 @@ public class Account {
         return mFaceCache;
     }
 
+    public void deleteSkinFace() {
+        File skinFaceFile = getSkinFaceFile();
+        if(skinFaceFile.exists()) {
+            skinFaceFile.delete();
+        }
+    }
+
     private File getSkinFaceFile() {
-        return new File(Tools.DIR_CACHE,  "skin-face-" + profileId +"-"+authType.name() + ".webp");
+        File skinFacesDirectory = new File(Tools.DIR_ACCOUNT_NEW, "skin_faces");
+        return new File(skinFacesDirectory, "skin-face-" + profileId + "-" + authType.name() + ".webp");
     }
 }

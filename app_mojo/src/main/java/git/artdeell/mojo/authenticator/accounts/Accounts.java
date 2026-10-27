@@ -110,6 +110,7 @@ public class Accounts {
 	}
 
 	public static void delete(Account account) {
+    account.deleteSkinFace();
 		boolean ignored = account.mSaveLocation.delete();
 	}
 
