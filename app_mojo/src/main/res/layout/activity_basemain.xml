@@ -29,20 +29,6 @@
 				android:descendantFocusability="blocksDescendants"
                 tools:ignore="UnusedAttribute">
 
-      <TextView
-                android:id="@+id/current_fps_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|center_horizontal"
-                android:translationZ="1dp"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
-                android:padding="8dp"
-                android:layout_marginTop="15dp"
-                android:visibility="gone"/>
-
-
-
 				<git.artdeell.mojo.game.GameCursorView
 					android:layout_height="match_parent"
 					android:layout_width="match_parent"
@@ -77,6 +63,18 @@
 				android:id="@+id/hotbar_view"
 				android:layout_width="0px"
 				android:layout_height="0px"/>
+
+			<TextView
+				android:id="@+id/current_fps_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="top|center_horizontal"
+				android:translationZ="11dp"
+				android:textSize="18sp"
+				android:textColor="@android:color/white"
+				android:padding="8dp"
+				android:layout_marginTop="15dp"
+				android:visibility="gone"/>
 
 		</git.artdeell.mojo.input.ControlLayout>
 

@@ -327,6 +327,7 @@ public class GameActivity extends BaseActivity implements ControlButtonMenuListe
         mHotbarView = findViewById(R.id.hotbar_view);
         mLoadingScreen = findViewById(R.id.main_loading_screen);
         FpsProvider.currentFpsView = findViewById(R.id.current_fps_view);
+        FpsProvider.enableDragging();
     }
 
     @Override

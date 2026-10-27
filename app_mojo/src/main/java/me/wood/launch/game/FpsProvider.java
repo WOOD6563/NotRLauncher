@@ -2,7 +2,9 @@ package me.wood.launch.game;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import git.artdeell.dnbootstrap.glfw.GLFW;
@@ -15,10 +17,29 @@ public final class FpsProvider {
     public static TextView currentFpsView;
     public static boolean getCurrentFps = false;
     private static final Handler fpsHandler = new Handler(Looper.getMainLooper());
+    private static float downX, downY, startX, startY;
 
 
     public static void setVersion(JVersionList.Version version) {
         currentVersion = version;
+    }
+
+    public static void enableDragging() {
+        currentFpsView.setOnTouchListener((view, event) -> {
+            ViewGroup parent = (ViewGroup) view.getParent();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                downX = event.getRawX();
+                downY = event.getRawY();
+                startX = view.getX();
+                startY = view.getY();
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                view.setX(Math.max(0, Math.min(parent.getWidth() - view.getWidth(),
+                        startX + event.getRawX() - downX)));
+                view.setY(Math.max(0, Math.min(parent.getHeight() - view.getHeight(),
+                        startY + event.getRawY() - downY)));
+            }
+            return true;
+        });
     }
 
     private static boolean isSdl(JVersionList.Version version) throws Exception {
