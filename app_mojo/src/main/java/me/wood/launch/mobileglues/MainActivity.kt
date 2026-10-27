@@ -7,10 +7,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.net.toUri
 import me.wood.launch.mobileglues.ui.AppController
 import me.wood.launch.mobileglues.ui.AuthFlowLauncher
@@ -62,6 +65,12 @@ class MainActivity : ComponentActivity(), AuthFlowLauncher {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.isNavigationBarContrastEnforced = false
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.attributes = window.attributes.apply {
+                layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            }
+        }
+        hideSystemBars()
 
         controller = AppController(application as MGApplication, this, this)
         setContent { MobileGluesApp(controller) }
@@ -72,6 +81,18 @@ class MainActivity : ComponentActivity(), AuthFlowLauncher {
         super.onNewIntent(intent)
         setIntent(intent)
         consumeHeadlessRequest(intent)
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemBars()
+    }
+
+    private fun hideSystemBars() {
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            hide(WindowInsetsCompat.Type.systemBars())
+            systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
     }
 
     /**

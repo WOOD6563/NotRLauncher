@@ -1,6 +1,5 @@
 package git.artdeell.mojo;
 
-import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -47,6 +46,8 @@ import git.artdeell.mojo.tasks.mojson.MoJsonExtras;
 import git.artdeell.mojo.tasks.AsyncVersionList;
 import git.artdeell.mojo.tasks.mojson.MoJsonDownloader;
 import git.artdeell.mojo.utils.NotificationUtils;
+
+import com.google.android.material.color.DynamicColors;
 
 public class LauncherActivity extends BaseActivity {
     public static final String SETTING_FRAGMENT_TAG = "SETTINGS_FRAGMENT";
@@ -147,17 +148,18 @@ public class LauncherActivity extends BaseActivity {
     };
     @Override
     protected boolean shouldIgnoreNotch() {
-        return getResources().getConfiguration().orientation == ORIENTATION_PORTRAIT;
+        return LauncherPreferences.PREF_LAUNCHER_IGNORE_NOTCH;
     }
 
     @Override
     public boolean setFullscreen() {
-        return false;
+        return true;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DynamicColors.applyToActivityIfAvailable(this);
         setContentView(R.layout.activity_mojo_ui);
         MoJsonDownloader.prepareSubstitutionMap(getAssets());
 
