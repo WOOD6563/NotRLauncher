@@ -65,7 +65,7 @@
         android:title="@string/preference_force_english_title"
         android:key="force_english"
         android:summary="@string/preference_force_english_description"
-        android:icon="@drawable/ic_px_translate"/>
+        android:icon="@drawable/ic_px_translate" app2:widgetLayout="@layout/preference_widget_material_switch" />
 
     <Preference
         android:title="@string/preference_ask_for_notification_title"

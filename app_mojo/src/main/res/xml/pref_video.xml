@@ -25,7 +25,7 @@
             android:summary="@string/mcl_setting_subtitle_ignore_notch"
             android:title="@string/mcl_setting_title_ignore_notch"
             android:icon="@drawable/ic_px_viewport_expand"
-            />
+ app2:widgetLayout="@layout/preference_widget_material_switch" />
 
         <git.artdeell.mojo.prefs.CustomSeekBarPreference
             android:key="resolutionRatio"
@@ -44,7 +44,7 @@
             android:key="sustainedPerformance"
             android:defaultValue="false"
             app2:iconSpaceReserved="false"
-            />
+ app2:widgetLayout="@layout/preference_widget_material_switch" />
 
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
@@ -52,21 +52,21 @@
             android:summary="@string/mcl_setting_subtitle_use_surface_view"
             android:title="@string/mcl_setting_title_use_surface_view"
             app2:iconSpaceReserved="false"
-            />
+ app2:widgetLayout="@layout/preference_widget_material_switch" />
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="force_vsync"
             android:summary="@string/preference_force_vsync_description"
             android:title="@string/preference_force_vsync_title"
             app2:iconSpaceReserved="false"
-            />
+ app2:widgetLayout="@layout/preference_widget_material_switch" />
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="use_angle"
             android:summary="@string/preference_use_angle_description"
             android:title="@string/preference_use_angle_title"
             app2:iconSpaceReserved="false"
-            />
+ app2:widgetLayout="@layout/preference_widget_material_switch" />
 
         <androidx.preference.SwitchPreferenceCompat
             android:defaultValue="false"
@@ -74,7 +74,7 @@
             android:summary="@string/preference_use_angle_description"
             android:title="@string/preference_use_system_angle_title"
             app2:iconSpaceReserved="false"
-            />
+ app2:widgetLayout="@layout/preference_widget_material_switch" />
 
         <Preference
             android:key="manageDrivers"
@@ -88,7 +88,7 @@
             android:icon="@drawable/ic_px_volcano"
             android:key="zinkPreferSystemDriver"
             android:summary="@string/preference_vulkan_driver_system_description"
-            android:title="@string/preference_vulkan_driver_system_title"/>
+            android:title="@string/preference_vulkan_driver_system_title" app2:widgetLayout="@layout/preference_widget_material_switch" />
 
     </PreferenceCategory>
 </PreferenceScreen>

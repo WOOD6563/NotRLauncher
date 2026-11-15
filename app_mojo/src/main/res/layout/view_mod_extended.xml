@@ -24,7 +24,8 @@
         app:layout_constraintTop_toBottomOf="@+id/mod_extended_error_textview"
         />
 
-    <com.kdt.mcgui.MineButton
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="7dp"
         android:id="@+id/mod_extended_select_version_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

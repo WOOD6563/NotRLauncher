@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toTopOf="@id/file_selector_create_folder"
         app:layout_constraintTop_toBottomOf="@+id/file_selector_current_path" />
 
-    <com.kdt.mcgui.MineButton
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="7dp"
         android:id="@+id/file_selector_select_folder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -30,7 +31,8 @@
         app:layout_constraintStart_toEndOf="@+id/file_selector_create_folder"
          />
 
-    <com.kdt.mcgui.MineButton
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="7dp"
         android:id="@+id/file_selector_create_folder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

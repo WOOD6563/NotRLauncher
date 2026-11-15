@@ -12,6 +12,6 @@
             android:icon="@drawable/ic_px_viewport_expand"
             android:key="launcherIgnoreNotch"
             android:summary="@string/mcl_setting_subtitle_ignore_notch"
-            android:title="@string/mcl_setting_title_ignore_notch" />
+            android:title="@string/mcl_setting_title_ignore_notch" app2:widgetLayout="@layout/preference_widget_material_switch" />
     </PreferenceCategory>
 </PreferenceScreen>

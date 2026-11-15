@@ -48,7 +48,8 @@
 
             app:layout_constraintBottom_toTopOf="@+id/mineButton_import_control" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/mineButton_import_control"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

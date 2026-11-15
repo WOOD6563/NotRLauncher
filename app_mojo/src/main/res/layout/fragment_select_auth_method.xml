@@ -15,7 +15,8 @@
         android:orientation="vertical"
         android:paddingVertical="@dimen/padding_extra_extra_large">
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/button_microsoft_authentication"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +27,8 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/button_elyby_authentication"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +38,8 @@
             android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintTop_toBottomOf="@+id/button_microsoft_authentication" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/button_local_authentication"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

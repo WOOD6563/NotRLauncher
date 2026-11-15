@@ -8,6 +8,7 @@
         <item name="android:statusBarColor">@color/background_status_bar</item>
         <item name="android:navigationBarColor">@color/background_app</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="preferenceCategoryStyle">@style/MojoLauncher.PreferenceCategory</item>
         <item name="android:textSize">@dimen/_12ssp</item>
         <item name="dialogCornerRadius">0dp</item>
         <item name="android:seekBarStyle">@style/MojoLauncher.SeekBar</item>
@@ -25,6 +26,7 @@
         <item name="android:statusBarColor">@color/background_status_bar</item>
         <item name="android:navigationBarColor">@color/background_app</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="preferenceCategoryStyle">@style/MojoLauncher.PreferenceCategory</item>
 
         <item name="android:textSize">@dimen/_14ssp</item>
 
@@ -36,6 +38,10 @@
         <item name="android:thumbOffset">0dp</item>
         <item name="android:maxHeight">4dp</item>
         <item name="android:minHeight">4dp</item>
+    </style>
+
+    <style name="MojoLauncher.PreferenceCategory" parent="Preference.Category.Material">
+        <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
     <style name="MojoLauncher.Switch" parent="Widget.AppCompat.CompoundButton.Switch">

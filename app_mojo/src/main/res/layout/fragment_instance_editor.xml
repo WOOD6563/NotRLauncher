@@ -93,6 +93,7 @@
                 android:layout_height="0dp"
                 android:paddingHorizontal="@dimen/padding_large"
                 android:paddingVertical="0px"
+                app:cornerRadius="7dp"
 
 
                 android:text="@string/global_select"
@@ -132,6 +133,7 @@
                 android:layout_height="0dp"
                 android:paddingHorizontal="@dimen/padding_large"
                 android:text="@string/global_select"
+                app:cornerRadius="7dp"
 
 
                 app:layout_constraintBottom_toBottomOf="@id/vprof_editor_ctrl_spinner"
@@ -241,7 +243,8 @@
         android:paddingHorizontal="@dimen/fragment_padding_medium"
         android:layout_marginVertical="13dp"
         >
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/vprof_editor_save_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -249,7 +252,8 @@
             android:text="@string/global_save"
             android:layout_marginEnd="@dimen/padding_medium" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/vprof_editor_delete_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

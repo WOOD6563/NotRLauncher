@@ -37,7 +37,8 @@
             app:layout_constraintTop_toBottomOf="@+id/title_textview"
             />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/vanilla_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +47,8 @@
             android:layout_marginTop="@dimen/padding_large"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/optifine_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +81,8 @@
             app:layout_constraintTop_toBottomOf="@+id/title_modded_textview"
             />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/modded_profile_fabric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,7 +90,8 @@
             android:layout_marginTop="@dimen/padding_large"
             android:text="@string/modloader_dl_install_fabric_instance" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/modded_profile_quilt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +99,8 @@
             android:layout_marginTop="@dimen/padding_large"
             android:text="@string/modloader_dl_install_quilt_instance" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/modded_profile_legacy_fabric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,7 +108,8 @@
             android:layout_marginTop="@dimen/padding_large"
             android:text="@string/modloader_dl_install_legacy_fabric_instance" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/modded_profile_forge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,7 +117,8 @@
             android:layout_marginTop="@dimen/padding_large"
             android:text="@string/modloader_dl_install_forge_instance" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/modded_profile_neoforge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,7 +126,8 @@
             android:layout_marginTop="@dimen/padding_large"
             android:text="@string/modloader_dl_install_neoforge_instance" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/modded_profile_modpack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,7 +135,8 @@
             android:layout_marginTop="@dimen/padding_large"
             android:text="@string/modpack_install_instance_button" />
 
-        <com.kdt.mcgui.MineButton
+        <com.google.android.material.button.MaterialButton
+            app:cornerRadius="7dp"
             android:id="@+id/modded_profile_bta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -47,7 +47,8 @@
         app:layout_constraintTop_toTopOf="@+id/login_menu"
         app:layout_constraintVertical_bias="0.251" />
 
-    <com.kdt.mcgui.MineButton
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="7dp"
         android:id="@+id/login_button"
         android:layout_width="0dp"
         android:layout_height="@dimen/_42sdp"

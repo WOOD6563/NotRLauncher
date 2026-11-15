@@ -35,7 +35,7 @@
             android:icon="@drawable/ic_px_java_run"
             android:key="java_sandbox"
             android:summary="@string/mcl_setting_java_sandbox_subtitle"
-            android:title="@string/mcl_setting_java_sandbox" />
+            android:title="@string/mcl_setting_java_sandbox" app2:widgetLayout="@layout/preference_widget_material_switch" />
 
     </PreferenceCategory>
 

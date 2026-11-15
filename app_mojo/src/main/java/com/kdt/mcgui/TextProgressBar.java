@@ -7,11 +7,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.content.res.ColorStateList;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 
 import androidx.annotation.StringRes;
 import androidx.core.content.res.ResourcesCompat;
+
+import com.google.android.material.color.MaterialColors;
 
 import git.artdeell.mojo.R;
 
@@ -34,7 +37,9 @@ public class TextProgressBar extends ProgressBar {
     private String mText = "";
 
     private void init(){
-        setProgressDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.view_text_progressbar, null));
+        setProgressDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.view_text_progressbar, getContext().getTheme()));
+        setProgressTintList(ColorStateList.valueOf(MaterialColors.getColor(
+                getContext(), R.attr.colorPrimary, Color.WHITE)));
         setProgress(35);
         mTextPaint = new Paint();
         mTextPaint.setColor(Color.WHITE);

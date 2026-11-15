@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@id/editResolution_textView" />
 
     <!-- Gyroscope settings -->
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/checkboxGyro"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editResolution_seekbar"/>
 
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/checkboxGyroX"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
@@ -64,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checkboxGyro"/>
 
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/checkboxGyroY"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toTopOf="@id/editMouseSpeed_textView" />
 
     <!-- Gesture toggle -->
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/checkboxGesture"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_36sdp"

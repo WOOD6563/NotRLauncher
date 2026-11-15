@@ -141,7 +141,8 @@
             android:text="@string/global_retry" />
     </LinearLayout>
 
-    <com.kdt.mcgui.MineButton
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="7dp"
         android:id="@+id/fabric_installer_start_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
